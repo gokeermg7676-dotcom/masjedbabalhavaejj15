@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پایگاه خبری و اطلاع‌رسانی مسجد باب‌الحوائج (ع)</title>
+    <meta name="description" content="پایگاه خبری و اطلاع‌رسانی مسجد باب‌الحوائج (ع) - تهران، منطقه ۱۵، کیانشهر شمالی">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ═══ Breaking News Bar ═══ -->
+    <div class="breaking-news-bar">
+        <div class="ticker-wrap">
+            <span class="badge"><i class="fa-solid fa-bolt"></i> فوری</span>
+            <div class="ticker-content" id="tickerContent"></div>
+        </div>
+    </div>
+
+    <!-- ═══ Navbar ═══ -->
+    <header class="navbar" id="navbar">
+        <div class="container">
+            <a href="javascript:void(0)" class="navbar-brand" onclick="navigateTo('home')">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-mosque"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>مسجد باب‌الحوائج (ع)</h1>
+                    <span>از سال ۱۳۵۰</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="javascript:void(0)" class="active" onclick="navigateTo('home')"><i class="fa-solid fa-home"></i> صفحه اصلی</a></li>
+                <li><a href="javascript:void(0)" onclick="navigateTo('about')"><i class="fa-solid fa-info-circle"></i> درباره مسجد</a></li>
+                <li><a href="javascript:void(0)" onclick="navigateTo('news')"><i class="fa-solid fa-newspaper"></i> اخبار</a></li>
+                <li><a href="javascript:void(0)" onclick="navigateTo('gallery')"><i class="fa-solid fa-images"></i> گالری</a></li>
+                <li><a href="javascript:void(0)" onclick="navigateTo('contact')"><i class="fa-solid fa-phone"></i> تماس با ما</a></li>
+            </ul>
+            
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="تغییر تم">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" onclick="openMobileMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ Mobile Menu ═══ -->
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn">
+            <button onclick="closeMobileMenu()"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <nav>
+            <a href="javascript:void(0)" class="active" onclick="navigateTo('home'); closeMobileMenu()"><i class="fa-solid fa-home"></i> صفحه اصلی</a>
+            <a href="javascript:void(0)" onclick="navigateTo('about'); closeMobileMenu()"><i class="fa-solid fa-info-circle"></i> درباره مسجد</a>
+            <a href="javascript:void(0)" onclick="navigateTo('news'); closeMobileMenu()"><i class="fa-solid fa-newspaper"></i> اخبار</a>
+            <a href="javascript:void(0)" onclick="navigateTo('gallery'); closeMobileMenu()"><i class="fa-solid fa-images"></i> گالری</a>
+            <a href="javascript:void(0)" onclick="navigateTo('contact'); closeMobileMenu()"><i class="fa-solid fa-phone"></i> تماس با ما</a>
+        </nav>
+    </div>
+
+    <!-- ═══ Home Page ═══ -->
+    <main class="page active" id="page-home">
+        
+        <!-- Hero Slider -->
+        <section class="hero-slider" id="heroSlider"></section>
+
+        <!-- Featured News -->
+        <section class="section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-star"></i> اخبار ویژه</h2>
+                <p>important news from our mosque</p>
+            </div>
+            <div class="featured-news" id="featuredNews"></div>
+        </section>
+
+        <!-- Latest News -->
+        <section class="section" style="background: var(--bg-light);">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-newspaper"></i> آخرین اخبار</h2>
+                <p>latest news and updates</p>
+            </div>
+            <div class="news-grid" id="latestNews"></div>
+        </section>
+
+        <!-- Upcoming Events -->
+        <section class="section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-calendar-days"></i> مراسم پیش‌رو</h2>
+                <p>upcoming events and ceremonies</p>
+            </div>
+            <div class="events-grid" id="upcomingEvents"></div>
+        </section>
+
+        <!-- Gallery Preview -->
+        <section class="section" style="background: var(--bg-light);">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-images"></i> گالری تصاویر</h2>
+                <p>photo gallery</p>
+            </div>
+            <div class="gallery-grid" id="galleryPreview"></div>
+        </section>
+    </main>
+
+    <!-- ═══ About Page ═══ -->
+    <div class="page" id="page-about">
+        <div class="page-hero">
+            <h2>درباره مسجد باب‌الحوائج (ع)</h2>
+            <p>آشنایی با تاریخچه و فعالیت‌های مسجد</p>
+            <div class="breadcrumb">
+                <a href="javascript:void(0)" onclick="navigateTo('home')">صفحه اصلی</a>
+                <i class="fa-solid fa-chevron-left"></i>
+                <span>درباره مسجد</span>
+            </div>
+        </div>
+        <section class="section">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1519817650390-64a93db51571?w=800&h=600&fit=crop" alt="مسجد باب‌الحوائج (ع)">
+                </div>
+                <div class="about-text">
+                    <h3>معرفی مسجد باب‌الحوائج (ع)</h3>
+                    <p>
+                        مسجد باب‌الحوائج (ع) از سال ۱۳۵۰ در قلب محله کیانشهر شمالی، خیابان روح‌بخش، 
+                        به عنوان پایگاهی فرهنگی، مذهبی و اجتماعی در خدمت اهالی منطقه ۱۵ تهران بوده است.
+                    </p>
+                    <p>
+                        این مسجد طی بیش از نیم قرن فعالیت مستمر، همواره نقش مؤثری در تقویت باورهای دینی، 
+                        ارتقای سطح فرهنگی و ایجاد همبستگی اجتماعی در میان ساکنین محله ایفا کرده است.
+                    </p>
+                    <p>
+                        فعالیت‌های اصلی مسجد شامل برگزاری نمازهای جماعت، کلاس‌های آموزش قرآن کریم، 
+                        مراسم مذهبی و مناسبتی، کارگاه‌های آموزشی، برنامه‌های فرهنگی ویژه نوجوانان و جوانان، 
+                        و خدمات‌رسانی به نیازمندان و آسیب‌دیدگان اجتماعی می‌باشد.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">۵۳+</div>
+                            <div class="stat-label">سال فعالیت</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">۱۲۰۰</div>
+                            <div class="stat-label">نمازگزار</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">۵۰+</div>
+                            <div class="stat-label"> برنامه سالیانه</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ═══ News Page ═══ -->
+    <div class="page" id="page-news">
+        <div class="page-hero">
+            <h2>اخبار مسجد باب‌الحوائج (ع)</h2>
+            <p>آخرین اخبار و رویدادهای مسجد</p>
+            <div class="breadcrumb">
+                <a href="javascript:void(0)" onclick="navigateTo('home')">صفحه اصلی</a>
+                <i class="fa-solid fa-chevron-left"></i>
+                <span>اخبار</span>
+            </div>
+        </div>
+        <section class="section">
+            <div class="search-filter-bar">
+                <div class="search-box">
+                    <input type="text" id="newsSearch" placeholder="جستجو در اخبار..." oninput="filterNews()">
+                    <i class="fa-solid fa-search"></i>
+                </div>
+                <div class="category-filters" id="categoryFilters"></div>
+            </div>
+            <div class="news-grid" id="allNews"></div>
+        </section>
+    </div>
+
+    <!-- ═══ Gallery Page ═══ -->
+    <div class="page" id="page-gallery">
+        <div class="page-hero">
+            <h2>گالری تصاویر مسجد باب‌الحوائج (ع)</h2>
+            <p>تصاویر مراسم و فعالیت‌های مسجد</p>
+            <div class="breadcrumb">
+                <a href="javascript:void(0)" onclick="navigateTo('home')">صفحه اصلی</a>
+                <i class="fa-solid fa-chevron-left"></i>
+                <span>گالری</span>
+            </div>
+        </div>
+        <section class="section">
+            <div class="gallery-grid" id="allGallery"></div>
+        </section>
+    </div>
+
+    <!-- ═══ Contact Page ═══ -->
+    <div class="page" id="page-contact">
+        <div class="page-hero">
+            <h2>تماس با ما</h2>
+            <p>ارتباط با مسجد باب‌الحوائج (ع)</p>
+            <div class="breadcrumb">
+                <a href="javascript:void(0)" onclick="navigateTo('home')">صفحه اصلی</a>
+                <i class="fa-solid fa-chevron-left"></i>
+                <span>تماس با ما</span>
+            </div>
+        </div>
+        <section class="section">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <h4>آدرس</h4>
+                    <p>تهران، منطقه ۱۵، کیانشهر شمالی، خیابان روح‌بخش، مسجد باب‌الحوائج (ع)</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <h4>شماره تماس</h4>
+                    <p>روابط عمومی: ابوالفضل سلمانی<br><a href="tel:09216368645">۰۹۲۱۶۳۶۸۶۴۵</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h4>ساعت فعالیت</h4>
+                    <p>همه روزه از ساعت ۵ صبح تا ۱۰ شب<br>اداره مسجد: ۸ صبح تا ۱۲ظهر</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <h4>پست الکترونیکی</h4>
+                    <p><a href="mailto:info@babalhawaej.ir">info@babalhawaej.ir</a></p>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3232.1234567890!2d51.4567!3d35.6892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQxJzIxLjEiTiA1McKwMjcnMjQuMSJF!5e0!3m2!1sfa!2sir!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <!-- ═══ News Detail Modal ═══ -->
+    <div class="news-modal" id="newsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeNewsModal()"><i class="fa-solid fa-times"></i></button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-body">
+                <div class="modal-meta" id="modalMeta"></div>
+                <h2 id="modalTitle"></h2>
+                <div class="content-text" id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ Lightbox ═══ -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="close-lightbox" onclick="closeLightbox(event)"><i class="fa-solid fa-times"></i></button>
+        <img id="lightboxImage" src="" alt="">
+        <div class="caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3><i class="fa-solid fa-mosque"></i> مسجد باب‌الحوائج (ع)</h3>
+                <p>پایگاه خبری و اطلاع‌رسانی مسجد باب‌الحوائج (ع) از سال ۱۳۵۰ در خدمت اهالی محله کیانشهر شمالی بوده و تلاش می‌کند آخرین اخبار و رویدادها را به صورت شفاف و به‌موقع در اختیار شهروندان قرار دهد.</p>
+            </div>
+            <div>
+                <h3>دسترسی سریع</h3>
+                <div class="footer-links">
+                    <a href="javascript:void(0)" onclick="navigateTo('home')"><i class="fa-solid fa-chevron-left"></i> صفحه اصلی</a>
+                    <a href="javascript:void(0)" onclick="navigateTo('about')"><i class="fa-solid fa-chevron-left"></i> درباره مسجد</a>
+                    <a href="javascript:void(0)" onclick="navigateTo('news')"><i class="fa-solid fa-chevron-left"></i> اخبار</a>
+                    <a href="javascript:void(0)" onclick="navigateTo('gallery')"><i class="fa-solid fa-chevron-left"></i> گالری تصاویر</a>
+                    <a href="javascript:void(0)" onclick="navigateTo('contact')"><i class="fa-solid fa-chevron-left"></i> تماس با ما</a>
+                </div>
+            </div>
+            <div>
+                <h3>ارتباط با ما</h3>
+                <ul class="footer-contact">
+                    <li><i class="fa-solid fa-location-dot"></i> تهران، منطقه ۱۵، کیانشهر شمالی</li>
+                    <li><i class="fa-solid fa-road"></i> خیابان روح‌بخش</li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:09216368645">۰۹۲۱۶۳۶۸۶۴۵</a></li>
+                    <li><i class="fa-solid fa-user"></i> روابط عمومی: ابوالفضل سلمانی</li>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@babalhawaej.ir">info@babalhawaej.ir</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© ۱۳۵۰ - ۱۴۰۳ مسجد باب‌الحوائج (ع) | تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <!-- ═══ Back to Top ═══ -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ═══ Scripts ═══ -->
+    <script src="news.js"></script>
+    <script src="gallery.js"></script>
+    <script src="events.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
